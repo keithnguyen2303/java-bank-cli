@@ -1,10 +1,10 @@
 package com.keith.bank;
 
 public class SavingsAccount extends Account {
-    private final double interestRate;   // e.g. 0.02 == 2%
+    private final double interestRate; // e.g. 0.02 == 2%
 
     public SavingsAccount(String id, String owner, double openingBalance, double interestRate) {
-        super(id, owner, openingBalance);     // calls Account's constructor
+        super(id, owner, openingBalance); // calls Account's constructor
         this.interestRate = interestRate;
     }
 

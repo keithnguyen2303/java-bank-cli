@@ -29,4 +29,15 @@ public class Bank {
     public Collection<Account> allAccounts() {
         return accounts.values();
     }
+
+    public double totalAssets() {
+        return accounts.values().stream()
+                .mapToDouble(Account::getBalance)
+                .sum();
+    }
+
+    public Optional<Account> richestAccount() {
+        return accounts.values().stream()
+                .max(java.util.Comparator.comparingDouble(Account::getBalance));
+    }
 }

@@ -29,11 +29,11 @@ public class Account {
         balance += amount;
     }
 
-    public void withdraw(double amount) {
+    public void withdraw(double amount) throws InsufficientFundsException {
         if (amount <= 0)
             throw new IllegalArgumentException("Withdrawal must be positive");
         if (amount > balance)
-            throw new IllegalArgumentException("Insufficient funds");
+            throw new InsufficientFundsException("Insufficient funds for " + id);
         balance -= amount;
     }
 

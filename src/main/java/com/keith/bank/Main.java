@@ -7,6 +7,7 @@ public class Main {
         bank.openAccount(new SavingsAccount("S1", "Bob", 1000.0, 0.02));
 
         bank.transfer("S1", "A1", 200.0);
+        bank.applyInterestToAll();   // Bob's savings grows by 2%; Alice (plain) is untouched
 
         for (Account acc : bank.allAccounts()) {
             System.out.println(acc);
@@ -21,7 +22,7 @@ public class Main {
                 System.out.printf("  %s $%.2f at %s%n", t.type(), t.amount(), t.timestamp());
             }
         });
-        
+
         System.out.println("\nAccounts by balance (high to low):");
         for (Account acc : bank.accountsByBalanceDesc()) {
             System.out.println("  " + acc);

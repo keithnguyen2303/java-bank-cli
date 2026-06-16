@@ -43,11 +43,19 @@ public class Bank {
         return accounts.values().stream()
                 .max(java.util.Comparator.comparingDouble(Account::getBalance));
     }
-    
+
     public List<Account> accountsByBalanceDesc() {
         return accounts.values().stream()
                 .sorted(Comparator.comparingDouble(Account::getBalance).reversed())
                 .collect(Collectors.toList());
+    }
+
+    public void applyInterestToAll() {
+        for (Account account : accounts.values()) {
+            if (account instanceof InterestBearing bearing) {   // checks type AND casts in one step
+                bearing.applyInterest();
+            }
+        }
     }
 
 }

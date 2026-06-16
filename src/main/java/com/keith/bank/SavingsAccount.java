@@ -1,6 +1,6 @@
 package com.keith.bank;
 
-public class SavingsAccount extends Account {
+public class SavingsAccount extends Account implements InterestBearing {
     private final double interestRate; // e.g. 0.02 == 2%
 
     public SavingsAccount(String id, String owner, double openingBalance, double interestRate) {
@@ -8,8 +8,9 @@ public class SavingsAccount extends Account {
         this.interestRate = interestRate;
     }
 
+    @Override
     public void applyInterest() {
-        deposit(getBalance() * interestRate); // reuses Account's validated deposit()
+        deposit(getBalance() * interestRate);
     }
 
     @Override

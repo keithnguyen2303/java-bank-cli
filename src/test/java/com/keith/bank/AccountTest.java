@@ -30,4 +30,12 @@ class AccountTest {
         Account account = new Account("A1", "Alice", 100.0);
         assertThrows(IllegalArgumentException.class, () -> account.deposit(-10.0));
     }
+
+    @Test
+    void accountsWithSameIdAreEqual() {
+        Account a = new Account("SAME", "Alice", 100.0);
+        Account b = new Account("SAME", "Bob", 200.0);
+        assertEquals(a, b);
+        assertEquals(a.hashCode(), b.hashCode());
+    }
 }

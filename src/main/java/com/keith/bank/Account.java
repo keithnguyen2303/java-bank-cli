@@ -3,6 +3,7 @@ package com.keith.bank;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
+import java.util.Objects;
 
 public class Account {
     private final String id;
@@ -46,6 +47,19 @@ public class Account {
 
     public List<Transaction> getHistory() {
         return Collections.unmodifiableList(history); // callers can read but not mutate our list
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        Account other = (Account) o;
+        return id.equals(other.id);            // two accounts are "equal" if same id
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(id);               // must be consistent with equals
     }
 
     @Override

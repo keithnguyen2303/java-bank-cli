@@ -21,5 +21,14 @@ public class Main {
                 System.out.printf("  %s $%.2f at %s%n", t.type(), t.amount(), t.timestamp());
             }
         });
+        
+        System.out.println("\nAccounts by balance (high to low):");
+        for (Account acc : bank.accountsByBalanceDesc()) {
+            System.out.println("  " + acc);
+        }
+
+        Account dupA = new Account("DUP", "Test", 0.0);
+        Account dupB = new Account("DUP", "Test", 999.0);
+        System.out.println("\nSame id, equal? " + dupA.equals(dupB));   // true
     }
 }

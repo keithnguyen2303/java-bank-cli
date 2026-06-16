@@ -11,7 +11,15 @@ public class Main {
         for (Account acc : bank.allAccounts()) {
             System.out.println(acc);
         }
+
         System.out.printf("Total assets: $%.2f%n", bank.totalAssets());
         bank.richestAccount().ifPresent(acc -> System.out.println("Richest: " + acc));
+
+        bank.findAccount("A1").ifPresent(alice -> {
+            System.out.println("\nAlice's transactions:");
+            for (Transaction t : alice.getHistory()) {
+                System.out.printf("  %s $%.2f at %s%n", t.type(), t.amount(), t.timestamp());
+            }
+        });
     }
 }

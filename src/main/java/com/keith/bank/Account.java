@@ -1,9 +1,14 @@
 package com.keith.bank;
 
+import java.util.ArrayList;
+import java.util.Collections;
+import java.util.List;
+
 public class Account {
-    private final String id; // private = hidden internal state (encapsulation)
+    private final String id;
     private final String owner;
     private double balance;
+    private final List<Transaction> history = new ArrayList<>();
 
     public Account(String id, String owner, double openingBalance) {
         this.id = id;
@@ -27,6 +32,7 @@ public class Account {
         if (amount <= 0)
             throw new IllegalArgumentException("Deposit must be positive");
         balance += amount;
+        history.add(Transaction.of(TransactionType.DEPOSIT, amount));
     }
 
     public void withdraw(double amount) throws InsufficientFundsException {
@@ -35,6 +41,11 @@ public class Account {
         if (amount > balance)
             throw new InsufficientFundsException("Insufficient funds for " + id);
         balance -= amount;
+        history.add(Transaction.of(TransactionType.WITHDRAWAL, amount));
+    }
+
+    public List<Transaction> getHistory() {
+        return Collections.unmodifiableList(history); // callers can read but not mutate our list
     }
 
     @Override

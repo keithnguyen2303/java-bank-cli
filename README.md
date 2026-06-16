@@ -6,10 +6,16 @@ A small command-line bank app to practice Java OOP, Collections, and Java 8 feat
 
     mvn compile exec:java
 
+## Build a runnable jar
+
+    mvn package
+    java -jar target/java-bank-cli-1.0-SNAPSHOT.jar
+
 ## Features
 
-- Account with encapsulated balance (deposit/withdraw with validation)
-- SavingsAccount subclass with interest (inheritance + overriding)
-- Bank using HashMap for account storage, Optional for safe lookups
+- Account with encapsulated balance and full transaction history
+- SavingsAccount (inheritance) implementing an InterestBearing interface
+- Bank using HashMap storage, Optional lookups, and stream reports
 - Custom checked exception for insufficient funds
-- Java 8 streams for total assets and richest-account reporting
+- equals/hashCode by account id; balance-sorted reporting
+- JUnit 5 test suite; packaged as an executable uber-jar via Maven Shade
